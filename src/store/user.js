@@ -6,7 +6,7 @@ import create from 'zustand'
 
 // define the store
 const userStore = create((set, get) => ({
-  title: 'user store',
+  title: 'user store - 入门',
   name: '瑶瑶',
   age: 18,
   addAge: (by) => set(state => ({age: state.age + by})),

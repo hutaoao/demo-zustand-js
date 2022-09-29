@@ -12,7 +12,11 @@ import create from 'zustand';
 import {persist} from "zustand/middleware";
 
 // define the store
-const listStore = create(persist((set) => ({
+
+/**
+ * 写法 1
+ * */
+/*const listStore = create(persist((set) => ({
   title: 'list store',
   fruits: ['apple', 'banana', 'orange'],
   addFruits: (fruit) => {
@@ -22,4 +26,20 @@ const listStore = create(persist((set) => ({
   }
 }), {name: 'listStore'}))
 
+export default listStore;*/
+
+/**
+ * 写法 2
+ * */
+const store = (set) => ({
+  title: 'list store - 持久化状态',
+  fruits: ['apple', 'banana', 'orange'],
+  addFruits: (fruit) => {
+    set(state => ({
+      fruits: [...state.fruits, fruit]
+    }));
+  }
+})
+
+const listStore = create(persist(store, {name: "listStore"}))
 export default listStore;
